@@ -14,29 +14,25 @@ const Header = () => {
         </label>
         <ul
           tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 right-1"
+          className=" menu-sm  dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 right-1"
         >
-          <li>
-            <NavLink to="/">
-              Donation <span className="text-[#be0b11d0]">campaign</span>
+          <li className="py-2">
+            <NavLink to={"/"}>
+              Donation-<span className="text-lg font-bold">campaign</span>
             </NavLink>
-            <ul className="p-2">
-              <li>
-                <NavLink to={"/"}>Home</NavLink>
-              </li>
-              <li className="">
-                {" "}
-                <NavLink>Donatation</NavLink>
+            <ul className=" border-l-4 py-2">
+              <li className="bg-transparent">
+                <NavLink to={"/donation"}>Donatation</NavLink>
               </li>
               <li>
-                <NavLink>statistics</NavLink>
+                <NavLink to={"/statistics"}>statistics</NavLink>
               </li>
             </ul>
           </li>
         </ul>
       </div>
 
-      <ul className="text-lg hidden flex items-center gap-10 lg:block">
+      <ul className="text-lg hidden lg:flex lg:items-center lg:gap-5">
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/donation"}>Donation</NavLink>
         <NavLink to={"/statistics"}>Statistics</NavLink>

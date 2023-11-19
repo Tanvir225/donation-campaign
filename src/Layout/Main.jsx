@@ -5,7 +5,7 @@ import Footer from "../Components/Footer/Footer";
 
 const Main = () => {
     let location = useLocation()
-    console.log(location);
+    // console.log(location);
     return (
         <div>
             {

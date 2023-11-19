@@ -17,7 +17,7 @@ const Card = ({ data }) => {
   } = data || {};
   // find donate or not
   const findDonate = getDonate.find((data) => data.id === id);
-  console.log(findDonate);
+  // console.log(findDonate);
 
   //usenavigate
   const navigate = useNavigate();
