@@ -29,11 +29,11 @@ const Donate = ({ donate }) => {
         >
           {category}
         </p>
-        <h2 className="font-bold">{title}</h2>
+        <h2 className="font-bold w-full">{title}</h2>
         <div className="card-actions ">
           <NavLink
             to={`/details/${id}`}
-            className="px-5 btn"
+            className="w-[120px] btn text-center"
             style={{
               backgroundColor: donate && category_bg,
               color: donate && title_category_text_color,

@@ -16,9 +16,9 @@ const Details = () => {
 
   //find a donate data details
   const findDetails = donateData.find((data) => data.id === id);
-  
-  //navigate 
-  const navigate = useNavigate()
+
+  //navigate
+  const navigate = useNavigate();
 
   //donate button function
   const handleDonate = () => {
@@ -36,56 +36,53 @@ const Details = () => {
           swal("Good! Your have donated successfully!", {
             icon: "success",
           });
-          navigate(-1)
+          navigate(-1);
           localStorage.setItem("donate", JSON.stringify(findDetails));
-        
         }
       });
-    } 
-    
-    else {
+    } else {
       const filterDonate = getDonate.find((data) => data.id === id);
       if (!filterDonate) {
         getDonate.push(findDetails);
         swal({
-            title: "Are you sure?",
-            text: "Once Donated, you will not be able to recover this donation fund!",
-            icon: "success",
-            buttons: true,
-            dangerMode: true,
-          }).then((willDelete) => {
-            if (willDelete) {
-              swal("Good! Your have donated successfully!", {
-                icon: "success",
-              });
-              navigate(-1)
-              localStorage.setItem("donate", JSON.stringify(getDonate));
-          
-            }
-          });
+          title: "Are you sure?",
+          text: "Once Donated, you will not be able to recover this donation fund!",
+          icon: "success",
+          buttons: true,
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            swal("Good! Your have donated successfully!", {
+              icon: "success",
+            });
+            navigate(-1);
+            localStorage.setItem("donate", JSON.stringify(getDonate));
+          }
+        });
       } else {
-        swal("OPPS!", "You have alredy donated","error")
-        navigate(-1)
+        swal("OPPS!", "You have alredy donated", "error");
+        navigate(-1);
       }
     }
   };
-  
+
   return (
     <div>
       {findDetails && (
-        <div className="mx-auto mt-10 max-w-6xl space-y-10">
+        <div className="mx-auto mt-10 px-5 max-w-6xl space-y-10 lg:p-0">
           <div className="relative h-[70vh]">
             <img
               src={findDetails && findDetails.picture}
               alt={`${findDetails && findDetails.title} image`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-lg"
             />
-            <figcaption className="absolute w-full px-4 bg-black opacity-60 text-lg  bottom-0 py-5">
+            <figcaption className="absolute w-full px-4 bg-black bg-opacity-60 text-lg rounded-lg  bottom-0 py-5">
               <button
                 onClick={handleDonate}
                 className="btn px-5 py-1 text-white"
                 style={{
-                  backgroundColor: findDetails && findDetails.title_category_text_color,
+                  backgroundColor:
+                    findDetails && findDetails.title_category_text_color,
                 }}
               >
                 Donate {findDetails && findDetails.price}
