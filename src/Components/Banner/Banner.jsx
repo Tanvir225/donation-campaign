@@ -5,7 +5,7 @@ const Banner = () => {
         <div className="h-[70vh]  bg-no-repeat bg-cover bg-center" style={{ backgroundImage: `url(${bannerImg})` }}>
             <div className="hero-overlay bg-opacity-90 bg-slate-50">
                 <Header></Header>
-                <div className="flex flex-col justify-center items-center mt-16">
+                <div className="flex flex-col px-10 mt-5 text-center justify-center items-center lg:mt-10 lg:p-0">
                     <div>
                         <h2 className="text-3xl font-extrabold">I Grow By Helping People In Need</h2>
                         <div className="flex justify-center mt-5">

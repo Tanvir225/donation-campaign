@@ -1,64 +1,109 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
-import swal from 'sweetalert';
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import swal from "sweetalert";
 
 const Details = () => {
-    //useparams hook get id
-    const { id } = useParams()
+  //useparams hook get id
+  const { id } = useParams();
+  //load data by useLoader Hook
+  const data = useLoaderData();
 
-    //load data by useLoader Hook
-    const data = useLoaderData()
+  //state for donate data
+  const [donateData, setDonateData] = useState([]);
+  useEffect(() => {
+    setDonateData(data);
+  }, [data]);
 
-    //state for donate data
-    const [donateData, setDonateData] = useState([])
-    useEffect(() => {
-        setDonateData(data)
-    }, [data])
+  //find a donate data details
+  const findDetails = donateData.find((data) => data.id === id);
+  
+  //navigate 
+  const navigate = useNavigate()
 
-    //find a donate data details
-    const findDetails = donateData.find(data => data.id === id)
+  //donate button function
+  const handleDonate = () => {
+    const getDonate = JSON.parse(localStorage.getItem("donate") || "[]");
 
-    //donate button function
-    const handleDonate = (id)=>{
-        const getDonate = JSON.parse(localStorage.getItem('donate') || [])
-        console.log(getDonate);
-        if (!getDonate) {
-            swal("Good job!", "You clicked the button!", "success");
-            localStorage.setItem('donate',JSON.stringify(findDetails))
-           
+    if (!getDonate) {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal("Good! Your have donated successfully!", {
+            icon: "success",
+          });
+          navigate(-1)
+          localStorage.setItem("donate", JSON.stringify(findDetails));
+        
         }
-        else{
-            const filterDonate = getDonate.filter(data => data.id === id)
-            console.log(filterDonate);
-            if (!filterDonate) {
-                getDonate.push(findDetails)
-                localStorage.setItem('donate',JSON.stringify(getDonate))
-            }else{
-                swal("Awws!", "You have already donated", "warning");
+      });
+    } 
+    
+    else {
+      const filterDonate = getDonate.find((data) => data.id === id);
+      if (!filterDonate) {
+        getDonate.push(findDetails);
+        swal({
+            title: "Are you sure?",
+            text: "Once Donated, you will not be able to recover this donation fund!",
+            icon: "success",
+            buttons: true,
+            dangerMode: true,
+          }).then((willDelete) => {
+            if (willDelete) {
+              swal("Good! Your have donated successfully!", {
+                icon: "success",
+              });
+              navigate(-1)
+              localStorage.setItem("donate", JSON.stringify(getDonate));
+          
             }
-        }
+          });
+      } else {
+        swal("OPPS!", "You have alredy donated","error")
+        navigate(-1)
+      }
     }
-    return (
-        <div>
-            {
-                findDetails && (
-                    <div className="mx-auto mt-10 max-w-5xl space-y-10">
-                        <div className="relative w-full h-[60vh] object-cover">
-                            <img src={findDetails && findDetails.picture} alt={`${findDetails && findDetails.title} image`} className=" w-full h-full" />
-                            <figcaption className="absolute w-full px-4 bg-black opacity-50 text-lg  bottom-0 py-5">
-                                <button onClick={()=>handleDonate(id)} className="btn px-5 py-1 text-white" style={{ backgroundColor: findDetails && findDetails.category_bg }}>Donate {findDetails && findDetails.price}</button>
-                            </figcaption>
-                        </div>
-                        <div className="space-y-5" >
-                            <h2 className="text-2xl font-bold">{findDetails && findDetails.title}</h2>
-                            <p className="font-semibold text-gray-500">{findDetails && findDetails.description}</p>
-                        </div>
-
-                    </div>
-                )
-            }
+  };
+  
+  return (
+    <div>
+      {findDetails && (
+        <div className="mx-auto mt-10 max-w-6xl space-y-10">
+          <div className="relative h-[70vh]">
+            <img
+              src={findDetails && findDetails.picture}
+              alt={`${findDetails && findDetails.title} image`}
+              className="w-full h-full object-cover"
+            />
+            <figcaption className="absolute w-full px-4 bg-black opacity-60 text-lg  bottom-0 py-5">
+              <button
+                onClick={handleDonate}
+                className="btn px-5 py-1 text-white"
+                style={{
+                  backgroundColor: findDetails && findDetails.title_category_text_color,
+                }}
+              >
+                Donate {findDetails && findDetails.price}
+              </button>
+            </figcaption>
+          </div>
+          <div className="space-y-5">
+            <h2 className="text-2xl font-bold">
+              {findDetails && findDetails.title}
+            </h2>
+            <p className="font-semibold text-gray-500">
+              {findDetails && findDetails.description}
+            </p>
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default Details;
