@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Banner from "../../Components/Banner/Banner";
 import { useEffect, useState } from "react";
 import Card from "../../Components/Card/Card";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   //use ref hook
@@ -23,6 +24,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Donation - Campaign</title>
+      </Helmet>
       <div>
         <Banner handleSearch={handleSearch}></Banner>
       </div>

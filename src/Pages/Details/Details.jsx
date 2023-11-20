@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 
@@ -68,6 +69,9 @@ const Details = () => {
 
   return (
     <div>
+       <Helmet>
+        <title>Campaign-details : {id}</title>
+      </Helmet>
       {findDetails && (
         <div className="mx-auto mt-10 px-5 max-w-6xl space-y-10 lg:p-0">
           <div className="relative h-[40vh] lg:h-[70vh]">
