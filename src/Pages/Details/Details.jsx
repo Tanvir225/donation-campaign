@@ -70,11 +70,11 @@ const Details = () => {
     <div>
       {findDetails && (
         <div className="mx-auto mt-10 px-5 max-w-6xl space-y-10 lg:p-0">
-          <div className="relative h-[70vh]">
+          <div className="relative h-[40vh] lg:h-[70vh]">
             <img
               src={findDetails && findDetails.picture}
               alt={`${findDetails && findDetails.title} image`}
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full h-[40vh] object-cover rounded-lg lg:h-full"
             />
             <figcaption className="absolute w-full px-4 bg-black bg-opacity-60 text-lg rounded-lg  bottom-0 py-5">
               <button

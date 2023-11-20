@@ -9,7 +9,7 @@ const Donate = ({ donate }) => {
     category,
     card_bg,
     title_category_text_color,
-    price,
+
   } = donate || {};
   return (
     <div

@@ -20,7 +20,7 @@ const Header = () => {
             <NavLink to={"/"}>
               Donation-<span className="text-lg font-bold">campaign</span>
             </NavLink>
-            <ul className=" border-l-4 py-2">
+            <ul className=" border-l-4 py-2 space-y-3">
               <li className="bg-transparent">
                 <NavLink to={"/donation"}>Donatation</NavLink>
               </li>
