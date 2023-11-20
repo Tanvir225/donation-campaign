@@ -85,7 +85,7 @@ const Details = () => {
                     findDetails && findDetails.title_category_text_color,
                 }}
               >
-                Donate {findDetails && findDetails.price}
+                Donate : $ {findDetails && findDetails.price}
               </button>
             </figcaption>
           </div>

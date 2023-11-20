@@ -4,17 +4,18 @@ import Home from "../Pages/Home/Home";
 import Donation from "../Pages/Donation/Donation";
 import Statistics from "../Pages/Statistics/Statistics";
 import Details from "../Pages/Details/Details";
-import Error from "../Pages/Error/Error";
+import Error from "../Components/Error/Error";
+
 
 const myCreatedRoute = createBrowserRouter([
     {
         path:"/",
         element: <Main></Main>,
+        errorElement:<Error></Error>,
         children: [
             {
                 path:"/",
                 element:<Home></Home>,
-                errorElement: <Error></Error>,
                 loader:()=>fetch('/donate.json'),
             },
             {

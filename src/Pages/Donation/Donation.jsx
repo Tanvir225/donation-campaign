@@ -19,12 +19,14 @@ const Donation = () => {
 
   return (
     <div className="">
+      <h2 className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 text-3xl text-center mt-10 mb-2 font-bold">Your Total Donation {donate?.reduce((preValue, currentValue) => parseFloat(preValue) + parseFloat(currentValue.price), 0)} $ </h2>
+      <hr className="w-1/2 mx-auto " />
       <div className="max-w-6xl mx-auto mt-16 px-5 grid grid-cols-1 gap-5 md:grid-cols-1 lg:grid-cols-2 lg:p-0">
         {
-    
-        isShow
-          ? donate.map((data) => <Donate key={data.id} donate={data}></Donate>)
-          : donate
+
+          isShow
+            ? donate.map((data) => <Donate key={data.id} donate={data}></Donate>)
+            : donate
               .slice(0, 4)
               ?.map((data) => <Donate key={data.id} donate={data}></Donate>)}
       </div>

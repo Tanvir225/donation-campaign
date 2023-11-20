@@ -5,9 +5,9 @@ import "./Header.css";
 const Header = () => {
   return (
     <nav className="max-w-6xl mx-auto py-5 flex justify-between">
-      <div>
+      <NavLink to={"/"}>
         <img src={logo} alt="logo image" />
-      </div>
+      </NavLink>
       <div className="dropdown mt-5">
         <label tabIndex={0} className="btn btn-ghost lg:hidden">
           <BiAlignJustify className="text-2xl"></BiAlignJustify>
