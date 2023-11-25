@@ -11,7 +11,7 @@ const Statistics = () => {
   const data = {
     datasets: [
       {
-        data: [getData.length, donateData.length]
+        data: [getData.length, donateData.length -  getData.length]
 
       },
     ],
